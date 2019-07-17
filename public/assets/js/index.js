@@ -1,20 +1,4 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/burger_style.css">
-    <title>News Scrape</title>
-    <script src="https://code.jquery.com/jquery.js"></script>
-</head>
-
-<body>
-    {{{body}}}
-    <script>
-        $.getJSON("/articles", function (data) {
+$.getJSON("/articles", function (data) {
     for (var i = 0; i < data.length; i++) {
         $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     }
@@ -61,8 +45,3 @@ $(document).on("click", "#savenote", function () {
     $("#titleinput").val("");
     $("#bodyinput").val("");
 });
-
-    </script>
-</body>
-
-</html>

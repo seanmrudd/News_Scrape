@@ -2,7 +2,7 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-var db = require("./models");
+var express = require("express");
 
 var PORT = 3000;
 
@@ -18,12 +18,12 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/newsController");
+var routes = require("./routes/routes");
 
 app.use(routes);
 
 mongoose.connect("mongodb://localhost/news_scrape", { useNewUrlParser: true });
-
+  
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
 });
