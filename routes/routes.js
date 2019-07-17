@@ -8,9 +8,16 @@ var cheerio = require("cheerio");
 
 var db = require("../models/index");
 
-router.get("/", func)
+router.get("/", function(req, res) {
+    db.Article.find(function(data){
+        var hbsObject = {data};
+        console.log(hbsObject);
+        res.render("index", hbsObject);
+    });
+})
 
 router.get("/scrape", function (req, res) {
+    
     axios.get("https://news.google.com").then(function (response) {
         var $ = cheerio.load(response.data);
 
