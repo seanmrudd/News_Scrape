@@ -22,9 +22,9 @@ var routes = require("./routes/routes");
 
 app.use(routes);
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/news_scrape";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://user:password1@ds161315.mlab.com:61315/heroku_nf39lwsd";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useMongoClient: true });
   
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
