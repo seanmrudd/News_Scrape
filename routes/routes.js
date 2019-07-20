@@ -8,16 +8,16 @@ var cheerio = require("cheerio");
 
 var db = require("../models/index");
 
-router.get("/", function(req, res) {
-    db.Article.find(function(data){
-        var hbsObject = {data};
+router.get("/", function (req, res) {
+    db.Article.find(function (data) {
+        var hbsObject = { data };
         console.log(hbsObject);
         res.render("index", hbsObject);
     });
 })
 
 router.get("/scrape", function (req, res) {
-    
+
     axios.get("https://news.google.com").then(function (response) {
         var $ = cheerio.load(response.data);
 
@@ -44,20 +44,20 @@ router.get("/articles", function (req, res) {
     });
 });
 
-router.get("/articles/:id", function(req, res){
-    db.Article.findOne({_id: req.params.id}).populate("note").then(function(dbArticle){
+router.get("/articles/:id", function (req, res) {
+    db.Article.findOne({ _id: req.params.id }).populate("note").then(function (dbArticle) {
         res.json(dbArticle);
-    }).catch(function(err){
+    }).catch(function (err) {
         res.json(err);
     });
 });
 
-router.post("/articles/:id", function(req,res){
-    db.Note.create(req.body).then(function(dbNote){
-        return db.Article.findOneAndUpdate({_id:req.params.id}, {note: dbNote._id}, {new: true});
-    }).then(function(dbArticle){
+router.post("/articles/:id", function (req, res) {
+    db.Note.create(req.body).then(function (dbNote) {
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    }).then(function (dbArticle) {
         res.json(dbArticle);
-    }).catch(function(err){
+    }).catch(function (err) {
         res.json(err);
     });
 });

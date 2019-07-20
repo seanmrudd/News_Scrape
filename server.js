@@ -24,7 +24,7 @@ app.use(routes);
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds253017.mlab.com:53017/heroku_f1tlslnz",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/news_scrape",
     {
         useNewUrlParser: true
     }
@@ -33,3 +33,5 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds253017.m
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
 });
+
+// user:password1@ds253017.mlab.com:53017/heroku_f1tlslnz

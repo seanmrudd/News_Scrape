@@ -1,10 +1,24 @@
 $.getJSON("/articles", function (data) {
     for (var i = 0; i < data.length; i++) {
-        $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='https://news.google.com" + data[i].link + "'>" + "View</a></p>");
+        $("#articles").append("<p data-id='" + data[i]._id + "'><h3>" + data[i].title + "</h3>" + "<a href='https://news.google.com" + data[i].link + "'>" + "View</a></p></br>");
+        // $("#articles").append(`
+
+        // <p data-id=${data[i]._id}>
+        //     <h3>${data[i].title}</h3>
+        //     <a href="https://news.google.com${data[i].link}">View</a>
+        // </p>
+        // </br>`
+
+        // );
+        // // $("p").append("data-id=" + data[i]._id)
+        // $("#artcles").append(`<p data-id=${data[i]._id}`)
+        // $("#articles").append(`<h3> ${data[i].title}</h3>`)
+        // $("#articles").append(`</p`)
+        // $("<p>")
     }
 });
 
-$(document).on("click", "p", function () {
+$(document).click("click", "p", function () {
     $("#notes").empty();
     var thisId = $(this).attr("data-id");
 
