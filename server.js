@@ -24,7 +24,7 @@ app.use(routes);
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/news_scrape",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds253017.mlab.com:53017/heroku_f1tlslnz",
     {
         useNewUrlParser: true
     }
