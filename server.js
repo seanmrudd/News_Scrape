@@ -13,13 +13,16 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/news_scrape", {
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
+
 app.use(routes);
-  
-app.listen(PORT, function() {
+
+app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
 }); 
