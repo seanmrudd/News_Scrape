@@ -1,8 +1,8 @@
 {
   "name": "news_scrape",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "news_scrape",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
