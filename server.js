@@ -17,9 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-}
+app.use(express.static("public"));
 
 app.use(routes);
 
