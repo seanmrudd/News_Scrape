@@ -1,35 +1,28 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const routes = require("./routes/routes");
+const express = require("express");
+const exphbs = require("express-handlebars");
 
-var express = require("express");
+const PORT = 3000;
 
-var PORT = 3000;
-
-var app = express();
+const app = express();
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://username:password1@ds255282.mlab.com:55282/heroku_n7pxcq6j", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/news_scrape", { useNewUrlParser: true });
 
 app.use(logger("dev"));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
-
-var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./routes/routes");
-
 app.use(routes);
 
-mongoose.Promise = global.Promise;
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user:password1@ds253017.mlab.com:53017/heroku_f1tlslnz",
-    {
-        useNewUrlParser: true
-    }
-);
-
-app.listen(PORT, function () {
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+  
+app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
-});
+}); 

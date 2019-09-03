@@ -1,8 +1,23 @@
 $.getJSON("/articles", function (data) {
     for (var i = 0; i < data.length; i++) {
         $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='https://news.google.com" + data[i].link + "'>" + "View</a></p>");
+        console.log(data)
     }
 });
+
+$("#refresh").on("click", function(){
+    $.ajax({
+        method: "REMOVE",
+        url: "/remove"
+    })
+    .then(function(err){
+        if (err) {
+            console.log(err)
+        } else {
+            console.log("deleted");
+        }
+    })
+})
 
 $(document).on("click", "p", function () {
     $("#notes").empty();

@@ -21,7 +21,7 @@ router.get("/scrape", function (req, res) {
     axios.get("https://news.google.com").then(function (response) {
         var $ = cheerio.load(response.data);
 
-        $("article h3").each(function (i, element) {
+        $("article h3").each(function () {
             var result = {};
 
             result.title = $(this).children("a").text();
@@ -33,6 +33,11 @@ router.get("/scrape", function (req, res) {
                 console.log(err);
             });
         });
+        $("article a"). each(function() {
+            var image = {};
+
+            
+        })
     });
 });
 
@@ -43,6 +48,17 @@ router.get("/articles", function (req, res) {
         res.json(err);
     });
 });
+
+router.delete("/remove", function(req, res, next){
+    db.Article.deleteMany({}, function (err, article) {
+        if (err) {
+            res.json(err)
+        }
+        res.json({
+            message: "Succesfully removed."
+        })
+    })
+})
 
 router.get("/articles/:id", function(req, res){
     db.Article.findOne({_id: req.params.id}).populate("note").then(function(dbArticle){
