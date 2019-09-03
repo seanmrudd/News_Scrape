@@ -49,7 +49,6 @@ router.get("/articles", function (req, res) {
     });
 });
 
-<<<<<<< HEAD
 router.delete("/remove", function(req, res, next){
     db.Article.deleteMany({}, function (err, article) {
         if (err) {
@@ -63,10 +62,6 @@ router.delete("/remove", function(req, res, next){
 
 router.get("/articles/:id", function(req, res){
     db.Article.findOne({_id: req.params.id}).populate("note").then(function(dbArticle){
-=======
-router.get("/articles/:id", function (req, res) {
-    db.Article.findOne({ _id: req.params.id }).populate("note").then(function (dbArticle) {
->>>>>>> 6935049a02bb22020c0de064ef0b7b5d4c237fcc
         res.json(dbArticle);
     }).catch(function (err) {
         res.json(err);

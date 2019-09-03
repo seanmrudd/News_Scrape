@@ -2,7 +2,6 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes/routes");
-const express = require("express");
 const exphbs = require("express-handlebars");
 
 const PORT = 3000;
@@ -20,8 +19,6 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(routes);
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
   
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
